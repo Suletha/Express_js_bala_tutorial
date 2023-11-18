@@ -29,6 +29,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());//To handle the json files in backend
 //To handle the static file like css files and images(create 'public' folder and put all the needed files)
 app.use(express.static(path.join(__dirname,'./public')));
+app.use('/subdir', require('./routes/subdir'))
+
+app.use('/employees', require('./routes/api/employees'))
 
 // app.get('/',(req,res) => {
 //     res.send('Hi Express');
@@ -72,8 +75,21 @@ app.get('/chain(.html)?',[one, two, three])
 
 
 //if u give any wrong url
-app.get('/*',(req,res)=> {
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+// app.get('/*',(req,res)=> {
+//     res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+// })
+
+//Any kind of error
+app.all('/*',(req,res)=> {
+    res.status(404);
+    if (req.accepts('html')){
+        res.sendFile(path.join(__dirname,'views','404.html'));
+    }else if (req.accepts.apply('json')){
+        res.json({"error":"404 not Found"})
+    }else {
+        res.type('txt').send("404 Not Found")
+    }
+    
 })
 
 app.use(errorHandler);
