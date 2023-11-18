@@ -49,3 +49,11 @@
 20231118	14:35:24	37d97a2f-95c3-413a-ae73-ac8f3ceb986d	GET	undefined	/css/style.css
 20231118	14:35:24	93251dd1-34db-4c7a-a096-73a2dd40b7af	GET	undefined	/images/python.jpg
 20231118	15:22:01	c2553f41-8e46-41b9-9649-6938f2966028	GET	undefined	/employees
+20231118	15:29:31	6ca2c749-bfa5-4208-b9c3-c17c0d10baa6	POST	undefined	/employees
+20231118	15:29:41	4d45b91a-3b20-462a-813b-78663a666a49	GET	undefined	/employees
+20231118	15:29:51	78bb7f89-e5de-488b-81c4-e07b169653d0	POST	undefined	/employees
+20231118	15:30:40	b903bad8-195a-43af-8902-f0e2c49c7bae	POST	undefined	/employees
+20231118	15:30:43	b820a6cc-a9bf-4f12-aab8-37160673aca7	POST	undefined	/employees
+20231118	15:31:58	0afc32c9-e7a2-47b8-8565-c8a9b2c5f832	POST	undefined	/employees
+20231118	15:32:05	43d69e55-4ed5-45e2-bb16-9a36fddf67d7	GET	undefined	/employees
+20231118	15:32:43	7cebe8f7-5c14-4d9b-9e42-fdf265363f84	POST	undefined	/employees
