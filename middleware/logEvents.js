@@ -14,10 +14,16 @@ const logEvents = async (message, logName) => {
             await fsPromises.mkdir(path.join(__dirname,'..', 'logs'));
         }
 
-        await fsPromises.appendFile(path.join(__dirname,'..', 'logs', 'reqlog.txt'), logItem);
+        await fsPromises.appendFile(path.join(__dirname,'..', 'logs', logName), logItem);
     } catch (err) {
         console.log(err);
     }
 }
 
-module.exports = logEvents;
+const logger = (req,res,next) => {
+    logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`,'reqlog.txt');
+    console.log(`${req.method} ${req.path}`)
+    next()
+}
+
+module.exports = {logger, logEvents};

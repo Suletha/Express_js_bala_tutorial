@@ -1,0 +1,4 @@
+20231118	13:59:00	e98fe1c7-f2f2-4b24-99ab-f41bd627bc13	Error: Not allowed by CORS
+20231118	13:59:01	dfa4aed5-d99c-422e-9e3d-59d124d7cb3b	Error: Not allowed by CORS
+20231118	14:00:29	5b9f8fbd-d308-49cc-889e-88ae3714dfd1	Error: Not allowed by CORS
+20231118	14:00:29	bd708f7d-3b98-46fc-83f7-a64dfe72e5c1	Error: Not allowed by CORS

@@ -2,14 +2,27 @@ const { json } = require('body-parser');
 const express = require('express');
 const app = express();
 const path = require('path');
-const logEvents = require('./middleware/logEvents')
+const {logger} = require('./middleware/logEvents')
+const errorHandler = require('./middleware/errorHandler')
 const PORT = process.env.PORT || 3500;
+const cors = require('cors');
 
-app.use((req,res,next) => {
-    logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`);
-    console.log(`${req.method} ${req.path}`)
-    next()
-})
+app.use(logger);
+
+
+//Cross Origin Resource Sharing(CRS policy)what are the website you can give access in your app
+const whitelist =['https://www.suletha.com', 'http://127.0.0.1:5500', 'http://localhost:3500']
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1 || !origin){
+            callback(null, true)
+        }else{
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 //built_in Middleware(To handle the form data in the backend when user clicks the button)
 app.use(express.urlencoded({extended: false}));
@@ -23,7 +36,7 @@ app.use(express.static(path.join(__dirname,'./public')));
 
 
 //REGULAR EXPRESSION
-app.get('^/$ | /index(.html)?',(req,res)=> {
+app.get('^/$|/index(.html)?',(req,res)=> {
     res.sendFile(path.join(__dirname,'views','index.html'));
 })
 
@@ -62,6 +75,8 @@ app.get('/chain(.html)?',[one, two, three])
 app.get('/*',(req,res)=> {
     res.status(404).sendFile(path.join(__dirname,'views','404.html'));
 })
+
+app.use(errorHandler);
 
 
 
