@@ -2,7 +2,14 @@ const { json } = require('body-parser');
 const express = require('express');
 const app = express();
 const path = require('path');
+const logEvents = require('./middleware/logEvents')
 const PORT = process.env.PORT || 3500;
+
+app.use((req,res,next) => {
+    logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`);
+    console.log(`${req.method} ${req.path}`)
+    next()
+})
 
 //built_in Middleware(To handle the form data in the backend when user clicks the button)
 app.use(express.urlencoded({extended: false}));
@@ -13,6 +20,7 @@ app.use(express.static(path.join(__dirname,'./public')));
 // app.get('/',(req,res) => {
 //     res.send('Hi Express');
 // })
+
 
 //REGULAR EXPRESSION
 app.get('^/$ | /index(.html)?',(req,res)=> {
